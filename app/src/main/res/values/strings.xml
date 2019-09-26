@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Frogogo</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="add_user">add_user</string>
+    <string name="input_name">Input name</string>
+    <string name="enter_surname">Enter surname</string>
+    <string name="enter_email">Enter email</string>
+    <string name="create">Create</string>
+    <string name="update">Update</string>
+    <string name="first_name_is_empty">First name is empty</string>
+    <string name="surname_is_empty">Surname is empty</string>
+    <string name="email_is_incorrect">Email is incorrect</string>
+    <string name="user_created">User created</string>
+    <string name="user_updated">User updated</string>
+    <string name="error_occurred">Error occurred</string>
+</resources>

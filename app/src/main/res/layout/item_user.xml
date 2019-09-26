@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/nameAndSurnameLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatarImg"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Elon Muskdsjfadsfasdjfhsadkfhsdakfhksdafhsakdfhdksajfhkdsafhdkas" />
+
+    <TextView
+        android:id="@+id/emilLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatarImg"
+        app:layout_constraintTop_toBottomOf="@id/nameAndSurnameLabel"
+        tools:text="blablablablblafjldjflafdsfahfkhdsakfhsdkfhksfhsakdfhskadfhdsakfhsdakfhsadkfhsadkfhsadkfhsadkfhds@gmail.com" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/avatarImg"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        app:layout_constraintBottom_toBottomOf="@id/emilLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/nameAndSurnameLabel"
+        tools:srcCompat="@drawable/ic_default_profile" />
+
+    <ProgressBar
+        android:id="@+id/imageLoadingPrb"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/emilLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/nameAndSurnameLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

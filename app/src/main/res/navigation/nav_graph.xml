@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/usersFragment">
+
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.gusakov.frogogo.ui.users.UsersFragment"
+        android:label="UsersFragment">
+        <action
+            android:id="@+id/action_usersFragment_to_createUserFragment"
+            app:destination="@id/createUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createUserFragment"
+        android:name="com.gusakov.frogogo.ui.create_user.CreateOrModifyUserFragment"
+        android:label="create_user_fragment"
+        tools:layout="@layout/create_or_modify_user_fragment">
+        <argument
+            android:name="user"
+            android:defaultValue="@null"
+            app:argType="com.gusakov.frogogo.model.User"
+            app:nullable="true" />
+    </fragment>
+</navigation>
