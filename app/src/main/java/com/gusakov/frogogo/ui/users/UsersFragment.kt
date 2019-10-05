@@ -19,12 +19,13 @@ import kotlinx.android.synthetic.main.fragment_users.*
 import org.koin.android.ext.android.inject
 
 class UsersFragment : Fragment() {
+    private val KEY_ITEMS = "key_items"
 
     companion object {
         fun newInstance() = UsersFragment()
     }
 
-    private lateinit var userAdapter: UserAdapter
+    private var userAdapter: UserAdapter? = null
     var progressDialog: ProgressDialog? = null
     private val viewModel: UsersViewModel by inject()
 
@@ -37,10 +38,10 @@ class UsersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
+        initViews(savedInstanceState)
     }
 
-    private fun initViews() {
+    private fun initViews(savedInstanceState: Bundle?) {
         userAdapter = UserAdapter {
             findNavController().navigate(
                 UsersFragmentDirections.actionUsersFragmentToCreateUserFragment(
@@ -55,6 +56,9 @@ class UsersFragment : Fragment() {
         addUserFab.setOnClickListener {
             findNavController().navigate(UsersFragmentDirections.actionUsersFragmentToCreateUserFragment())
         }
+        savedInstanceState?.let {
+            userAdapter!!.listItem = it.getParcelableArrayList<User>(KEY_ITEMS) ?: arrayListOf()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -63,6 +67,17 @@ class UsersFragment : Fragment() {
         subscribeOnEvents()
         if (savedInstanceState == null) {
             viewModel.loadUsers()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        userAdapter?.apply {
+            if (listItem is ArrayList) {
+                outState.putParcelableArrayList(KEY_ITEMS, listItem as ArrayList<User>)
+            } else {
+                outState.putSerializable(KEY_ITEMS, arrayListOf(listItem))
+            }
         }
     }
 
@@ -85,7 +100,7 @@ class UsersFragment : Fragment() {
 
     private fun handleSuccess(users: List<User>) {
         hideProgressDialog()
-        userAdapter.listItem = users
+        userAdapter!!.listItem = users
     }
 
     private fun hideProgressDialog() {
